@@ -4,33 +4,31 @@ import 'package:jpstockmemo2/components/custom_text_form_field.dart';
 import 'package:drift/drift.dart' as drift hide Column;
 import 'package:jpstockmemo2/databases/tables.dart';
 
+const List<String> markets = ["プライム", "スタンダード", "グロース", "その他"];
+
 class EditPage extends StatefulWidget {
-  const EditPage({Key? key}) : super(key: key);
+  const EditPage({
+    Key? key,
+  }) : super(
+          key: key,
+        );
 
   @override
   State<EditPage> createState() => _EditPageState();
 }
 
 class _EditPageState extends State<EditPage> {
-  late StockMemoDatabase _db;
-  late List<StockMemo> stockmemos = [];
+  final StockMemoDatabase _db = StockMemoDatabase(); // データベースに接続
+  List<StockMemo> stockmemos = []; // データベースから取得したデータを格納する変数
+  String _dropdownValue = markets.first; // ドロップダウンメニューの値を格納する変数と初期値
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final TextEditingController _memoController = TextEditingController();
 
-  void _refreshMemos() async {
-    _db = StockMemoDatabase();
-    final data = await _db.getMemos();
-    setState(() {
-      stockmemos = data;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
-    _refreshMemos();
   }
 
   @override
@@ -87,6 +85,41 @@ class _EditPageState extends State<EditPage> {
                     },
                     keyboardType: TextInputType.text,
                   ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ListTile(
+                        title: const Text(
+                          '市場',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        subtitle: DropdownButton<String>(
+                          isExpanded: true,
+                          underline: Container(
+                            height: 1,
+                            color: Colors.black26,
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _dropdownValue = value!;
+                            });
+                          },
+                          value: _dropdownValue,
+                          items: markets.map<DropdownMenuItem<String>>(
+                            (String text) {
+                              return DropdownMenuItem<String>(
+                                value: text,
+                                child: Text(text),
+                              );
+                            },
+                          ).toList(),
+                        ),
+                      ),
+                    ],
+                  ),
                   CustomTextFormField(
                     controller: _nameController,
                     labelText: '銘柄名',
@@ -120,11 +153,12 @@ class _EditPageState extends State<EditPage> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
-                      onPressed: () async {
+                      onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           final entity = StockMemosCompanion(
                             code: drift.Value(_codeController.text),
                             stockname: drift.Value(_nameController.text),
+                            market: drift.Value(_dropdownValue),
                             memo: drift.Value(_memoController.text),
                           );
                           _db.insertMemo(entity).then(
@@ -134,9 +168,8 @@ class _EditPageState extends State<EditPage> {
                                     return CustomAlertDialog(
                                       title: "保存しました",
                                       buttonText: "OK",
-                                      onPressed: () {
-                                        Navigator.pushNamed(context, '/');
-                                        _refreshMemos();
+                                      onPressed: () async {
+                                        await Navigator.pushNamed(context, '/');
                                       },
                                     );
                                   },

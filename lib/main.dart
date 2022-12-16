@@ -1,6 +1,6 @@
-import 'package:drift/drift.dart';
 import 'package:flutter/material.dart';
 import 'package:jpstockmemo2/views/list_page.dart';
+import 'package:drift/drift.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,12 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return const MaterialApp(
+      home: Scaffold(
+        body: ListPage(),
       ),
-      home: const ListPage(),
     );
   }
 }

@@ -12,16 +12,16 @@ class ListPage extends StatefulWidget {
 }
 
 class _ListPageState extends State<ListPage> {
-  late MemoDatabase _db;
+  late StockMemoDatabase _db;
 
-  late List<Memo> memos = [];
+  late List<StockMemo> stockmemos = [];
 
   void _refreshMemos() async {
-    _db = MemoDatabase();
+    _db = StockMemoDatabase();
     final data = await _db.getMemos();
     setState(
       () {
-        memos = data;
+        stockmemos = data;
       },
     );
   }
@@ -62,23 +62,23 @@ class _ListPageState extends State<ListPage> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: memos.length,
+              itemCount: stockmemos.length,
               itemBuilder: (context, index) => StockCard(
                 isButtonMode: isButtonMode,
-                stockname: memos[index].stockname,
-                code: memos[index].code,
+                stockname: stockmemos[index].stockname,
+                code: stockmemos[index].code,
                 market: "市場",
-                memo: memos[index].memo,
+                memo: stockmemos[index].memo,
                 onDeleteChanged: () async {
                   await showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return CustomAlertDialog(
-                        title: "${memos[index].stockname}を削除しますか？",
+                        title: "${stockmemos[index].stockname}を削除しますか？",
                         buttonText: "OK",
                         onPressed: () async {
                           Navigator.of(context).pop();
-                          await _db.deleteMemo(memos[index].id);
+                          await _db.deleteMemo(stockmemos[index].id);
                           _refreshMemos();
                         },
                       );

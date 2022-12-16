@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/custom_text_form_field.dart';
-import 'package:jpstockmemo2/databases/tables.dart';
 import 'package:drift/drift.dart' as drift hide Column;
+import 'package:jpstockmemo2/databases/tables.dart';
 
 class EditPage extends StatefulWidget {
   const EditPage({Key? key}) : super(key: key);
@@ -12,18 +12,18 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
-  late MemoDatabase _db;
-  late List<Memo> memos = [];
+  late StockMemoDatabase _db;
+  late List<StockMemo> stockmemos = [];
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _codeController = TextEditingController();
   final TextEditingController _memoController = TextEditingController();
 
   void _refreshMemos() async {
-    _db = MemoDatabase();
+    _db = StockMemoDatabase();
     final data = await _db.getMemos();
     setState(() {
-      memos = data;
+      stockmemos = data;
     });
   }
 
@@ -122,7 +122,7 @@ class _EditPageState extends State<EditPage> {
                     child: ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          final entity = MemosCompanion(
+                          final entity = StockMemosCompanion(
                             code: drift.Value(_codeController.text),
                             stockname: drift.Value(_nameController.text),
                             memo: drift.Value(_memoController.text),

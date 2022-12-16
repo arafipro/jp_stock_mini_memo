@@ -19,9 +19,11 @@ class _ListPageState extends State<ListPage> {
   void _refreshMemos() async {
     _db = MemoDatabase();
     final data = await _db.getMemos();
-    setState(() {
-      memos = data;
-    });
+    setState(
+      () {
+        memos = data;
+      },
+    );
   }
 
   @override
@@ -44,34 +46,52 @@ class _ListPageState extends State<ListPage> {
         automaticallyImplyLeading: false, // 戻るボタンを表示しない
         title: const Text('ListPage'),
       ),
-      body: ListView.builder(
-        itemCount: memos.length,
-        itemBuilder: (context, index) => StockCard(
-          isButtonMode: isButtonMode,
-          stockname: memos[index].stockname,
-          code: memos[index].code,
-          market: "市場",
-          memo: memos[index].memo,
-          onDeleteChanged: () async {
-            await showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return CustomAlertDialog(
-                  title: "${memos[index].stockname}を削除しますか？",
-                  buttonText: "OK",
-                  onPressed: () async {
-                    Navigator.of(context).pop();
-                    await _db.deleteMemo(memos[index].id);
-                    _refreshMemos();
-                  },
-                );
-              },
-            );
-          },
-          onEditChanged: () async {},
-          createdAt: null,
-          updatedAt: null,
-        ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 40,
+            child: Center(
+              child: Text(
+                'Adbannar',
+                style: TextStyle(
+                  fontSize: 30,
+                  backgroundColor: Colors.amber,
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: memos.length,
+              itemBuilder: (context, index) => StockCard(
+                isButtonMode: isButtonMode,
+                stockname: memos[index].stockname,
+                code: memos[index].code,
+                market: "市場",
+                memo: memos[index].memo,
+                onDeleteChanged: () async {
+                  await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CustomAlertDialog(
+                        title: "${memos[index].stockname}を削除しますか？",
+                        buttonText: "OK",
+                        onPressed: () async {
+                          Navigator.of(context).pop();
+                          await _db.deleteMemo(memos[index].id);
+                          _refreshMemos();
+                        },
+                      );
+                    },
+                  );
+                },
+                onEditChanged: () async {},
+                createdAt: null,
+                updatedAt: null,
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

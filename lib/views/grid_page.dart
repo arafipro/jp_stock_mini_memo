@@ -6,23 +6,25 @@ import 'package:jpstockmemo2/databases/tables.dart';
 import 'package:jpstockmemo2/views/edit_page.dart';
 
 class GridPage extends StatefulWidget {
-  const GridPage({super.key});
+  const GridPage({
+    super.key,
+  });
 
   @override
   State<GridPage> createState() => _GridPageState();
 }
 
 class _GridPageState extends State<GridPage> {
-  late StockMemoDatabase _db;
-
-  late List<StockMemo> stockmemos = [];
+  final StockMemoDatabase _db = StockMemoDatabase(); // データベースに接続
+  List<StockMemo> stockmemos = []; // データベースから取得したデータを格納する変数
 
   void _refreshMemos() async {
-    _db = StockMemoDatabase();
     final data = await _db.getMemos();
-    setState(() {
-      stockmemos = data;
-    });
+    setState(
+      () {
+        stockmemos = data;
+      },
+    );
   }
 
   @override
@@ -52,7 +54,7 @@ class _GridPageState extends State<GridPage> {
           isButtonMode: isButtonMode,
           stockname: stockmemos[index].stockname,
           code: stockmemos[index].code,
-          market: "市場",
+          market: stockmemos[index].market,
           memo: stockmemos[index].memo,
           onDeleteChanged: () async {
             await showDialog(

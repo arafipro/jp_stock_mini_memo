@@ -12,14 +12,14 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const bool isButtonMode = true;
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false, // 戻るボタンを表示しない
-        title: const Text('ListPage'),
-      ),
-      body: ChangeNotifierProvider<ListModel>(
-        create: (_) => ListModel()..fetchMemos(),
-        child: Column(
+    return ChangeNotifierProvider<ListModel>(
+      create: (_) => ListModel()..fetchMemos(),
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false, // 戻るボタンを表示しない
+          title: const Text('ListPage'),
+        ),
+        body: Column(
           children: [
             const SizedBox(
               height: 40,
@@ -65,7 +65,8 @@ class ListPage extends StatelessWidget {
                           createdAt: null,
                           updatedAt: null,
                         ),
-                      ).toList();
+                      )
+                      .toList();
                   return ListView(
                     children: stockcards,
                   );
@@ -74,18 +75,20 @@ class ListPage extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const EditPage(),
-            ),
-          );
-        },
-        label: const Text('EditPage'),
-        icon: const Icon(Icons.add),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditPage(
+                  stockmemo: null,
+                ),
+              ),
+            );
+          },
+          label: const Text('EditPage'),
+          icon: const Icon(Icons.add),
+        ),
       ),
     );
   }

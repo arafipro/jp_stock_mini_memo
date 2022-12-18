@@ -3,7 +3,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/stock_card.dart';
 import 'package:jpstockmemo2/databases/tables.dart';
-import 'package:jpstockmemo2/views/edit_page.dart';
 
 class GridPage extends StatefulWidget {
   const GridPage({
@@ -79,12 +78,12 @@ class _GridPageState extends State<GridPage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const EditPage(),
-            ),
-          );
+          // Navigator.push(
+          //   context,
+          //   MaterialPageRoute(
+          //     builder: (context) => const EditPage(),
+          //   ),
+          // );
         },
         label: const Text('EditPage'),
         icon: const Icon(Icons.add),

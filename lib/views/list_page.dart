@@ -1,43 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/stock_card.dart';
-import 'package:jpstockmemo2/databases/tables.dart';
+import 'package:jpstockmemo2/viewmodels/list_model.dart';
 import 'package:jpstockmemo2/views/edit_page.dart';
+import 'package:provider/provider.dart';
 
-class ListPage extends StatefulWidget {
+class ListPage extends StatelessWidget {
   const ListPage({
     super.key,
   });
-
-  @override
-  State<ListPage> createState() => _ListPageState();
-}
-
-class _ListPageState extends State<ListPage> {
-  final StockMemoDatabase _db = StockMemoDatabase(); // データベースに接続
-  List<StockMemo> stockmemos = []; // データベースから取得したデータを格納する変数
-
-  void _refreshMemos() async {
-    final data = await _db.getMemos();
-    setState(
-      () {
-        stockmemos = data;
-      },
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _refreshMemos();
-  }
-
-  @override
-  void dispose() {
-    _db.close();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     const bool isButtonMode = true;
@@ -46,52 +17,63 @@ class _ListPageState extends State<ListPage> {
         automaticallyImplyLeading: false, // 戻るボタンを表示しない
         title: const Text('ListPage'),
       ),
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 40,
-            child: Center(
-              child: Text(
-                'Adbannar',
-                style: TextStyle(
-                  fontSize: 30,
-                  backgroundColor: Colors.amber,
+      body: ChangeNotifierProvider<ListModel>(
+        create: (_) => ListModel()..fetchMemos(),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 40,
+              child: Center(
+                child: Text(
+                  'Adbannar',
+                  style: TextStyle(
+                    fontSize: 30,
+                    backgroundColor: Colors.amber,
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: stockmemos.length,
-              itemBuilder: (context, index) => StockCard(
-                isButtonMode: isButtonMode,
-                stockname: stockmemos[index].stockname,
-                code: stockmemos[index].code,
-                market: stockmemos[index].market,
-                memo: stockmemos[index].memo,
-                onDeleteChanged: () async {
-                  await showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return CustomAlertDialog(
-                        title: "${stockmemos[index].stockname}を削除しますか？",
-                        buttonText: "OK",
-                        onPressed: () async {
-                          Navigator.of(context).pop();
-                          await _db.deleteMemo(stockmemos[index].id);
-                          _refreshMemos();
-                        },
-                      );
-                    },
+            Expanded(
+              child: Consumer<ListModel>(
+                builder: (BuildContext context, model, Widget? child) {
+                  final stockmemos = model.stockmemos;
+                  final stockcards = stockmemos
+                      .map(
+                        (stockcard) => StockCard(
+                          isButtonMode: isButtonMode,
+                          stockname: stockcard.stockname,
+                          code: stockcard.code,
+                          market: stockcard.market,
+                          memo: stockcard.memo,
+                          onDeleteChanged: () async {
+                            await showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CustomAlertDialog(
+                                  title: "${stockcard.stockname}を削除しますか？",
+                                  buttonText: "OK",
+                                  onPressed: () async {
+                                    Navigator.of(context).pop();
+                                    await model.deleteMemo(stockcard);
+                                    await model.fetchMemos();
+                                  },
+                                );
+                              },
+                            );
+                          },
+                          onEditChanged: () async {},
+                          createdAt: null,
+                          updatedAt: null,
+                        ),
+                      ).toList();
+                  return ListView(
+                    children: stockcards,
                   );
                 },
-                onEditChanged: () async {},
-                createdAt: null,
-                updatedAt: null,
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {

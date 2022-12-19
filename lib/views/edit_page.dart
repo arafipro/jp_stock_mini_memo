@@ -223,7 +223,12 @@ class EditPage extends StatelessWidget {
     BuildContext context,
   ) async {
     try {
-      final navigator = Navigator.of(context);
+      final navigator = Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ListPage(),
+        ),
+      );
       await model.updateMemo(stockmemo!);
       await showDialog(
         context: context,
@@ -236,7 +241,7 @@ class EditPage extends StatelessWidget {
           );
         },
       );
-      navigator.pop();
+      await navigator;
     } catch (e) {
       showDialog(
         context: context,

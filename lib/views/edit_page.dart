@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/custom_text_form_field.dart';
-import 'package:drift/drift.dart' as drift hide Column;
-import 'package:jpstockmemo2/databases/tables.dart';
+import 'package:jpstockmemo2/models/stock_memo.dart';
 import 'package:jpstockmemo2/viewmodels/edit_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,14 +16,16 @@ class EditPage extends StatelessWidget {
   final _key = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     final bool isUpdate = stockmemo != null;
     final nameController = TextEditingController();
     final codeController = TextEditingController();
     final memoController = TextEditingController();
 
     if (isUpdate) {
-      nameController.text = stockmemo!.stockname;
+      nameController.text = stockmemo!.name;
       codeController.text = stockmemo!.code;
       memoController.text = stockmemo!.memo;
     }
@@ -32,10 +33,15 @@ class EditPage extends StatelessWidget {
       create: (_) => EditModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('EditPage'),
+          title: Text(isUpdate ? '日本株投資メモ - 編集' : '日本株投資メモ - 新規登録'),
         ),
         body: Consumer<EditModel>(
-          builder: (context, model, child) => Column(
+          builder: (
+            context,
+            model,
+            child,
+          ) =>
+              Column(
             children: [
               const SizedBox(
                 height: 40,
@@ -93,7 +99,7 @@ class EditPage extends StatelessWidget {
                               ),
                               onChanged: (String? value) {
                                 model.onChanged(value!);
-                                // stockmemo.market = value;
+                                stockmemo?.market = value;
                               },
                               value: model.dropdownValue,
                               items:
@@ -142,34 +148,20 @@ class EditPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            model.startLoading();
                             if (_key.currentState!.validate()) {
-                              final entity = StockMemosCompanion(
-                                code: drift.Value(codeController.text),
-                                stockname: drift.Value(nameController.text),
-                                market: drift.Value(model.dropdownValue),
-                                memo: drift.Value(memoController.text),
-                              );
-                              model.addMemo(entity).then(
-                                    (value) => showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return CustomAlertDialog(
-                                          title: "保存しました",
-                                          buttonText: "OK",
-                                          onPressed: () async {
-                                            await Navigator.pushNamed(
-                                                context, '/');
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  );
+                              if (isUpdate) {
+                                await updateMemo(model, context);
+                              } else {
+                                await addMemo(model, context);
+                              }
                             }
+                            model.endLoading();
                           },
-                          child: const Text(
-                            '保存',
-                            style: TextStyle(
+                          child: Text(
+                            isUpdate ? '編集完了' : '保存',
+                            style: const TextStyle(
                               fontSize: 20,
                             ),
                           ),
@@ -184,5 +176,71 @@ class EditPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future addMemo(
+    EditModel model,
+    BuildContext context,
+  ) async {
+    try {
+      await model.addMemo();
+      await showDialog(
+        context: context,
+        builder: (
+          BuildContext context,
+        ) {
+          return const CustomAlertDialog(
+            title: '保存しました',
+            buttonText: 'OK',
+          );
+        },
+      );
+      Navigator.of(context).pop();
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (
+          BuildContext context,
+        ) {
+          return CustomAlertDialog(
+            title: e.toString(),
+            buttonText: 'OK',
+          );
+        },
+      );
+    }
+  }
+
+  Future updateMemo(
+    EditModel model,
+    BuildContext context,
+  ) async {
+    try {
+      await model.updateMemo(stockmemo!);
+      await showDialog(
+        context: context,
+        builder: (
+          BuildContext context,
+        ) {
+          return const CustomAlertDialog(
+            title: '変更しました',
+            buttonText: 'OK',
+          );
+        },
+      );
+      Navigator.of(context).pop();
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (
+          BuildContext context,
+        ) {
+          return CustomAlertDialog(
+            title: e.toString(),
+            buttonText: 'OK',
+          );
+        },
+      );
+    }
   }
 }

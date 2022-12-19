@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/stock_card.dart';
 import 'package:jpstockmemo2/viewmodels/list_model.dart';
 import 'package:jpstockmemo2/views/edit_page.dart';
-import 'package:provider/provider.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({
@@ -17,7 +17,9 @@ class ListPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
-          title: const Text('ListPage'),
+          title: const Text(
+            '日本株投資メモ',
+          ),
         ),
         body: Column(
           children: [
@@ -35,22 +37,30 @@ class ListPage extends StatelessWidget {
             ),
             Expanded(
               child: Consumer<ListModel>(
-                builder: (BuildContext context, model, Widget? child) {
+                builder: (
+                  BuildContext context,
+                  model,
+                  Widget? child,
+                ) {
                   final stockmemos = model.stockmemos;
                   final stockcards = stockmemos
                       .map(
                         (stockcard) => StockCard(
                           isButtonMode: isButtonMode,
-                          stockname: stockcard.stockname,
+                          stockname: stockcard.name,
                           code: stockcard.code,
                           market: stockcard.market,
                           memo: stockcard.memo,
+                          createdAt: stockcard.createdAt,
+                          updatedAt: stockcard.updatedAt,
                           onDeleteChanged: () async {
                             await showDialog(
                               context: context,
-                              builder: (BuildContext context) {
+                              builder: (
+                                BuildContext context,
+                              ) {
                                 return CustomAlertDialog(
-                                  title: "${stockcard.stockname}を削除しますか？",
+                                  title: "${stockcard.name}を削除しますか？",
                                   buttonText: "OK",
                                   onPressed: () async {
                                     Navigator.of(context).pop();
@@ -61,9 +71,18 @@ class ListPage extends StatelessWidget {
                               },
                             );
                           },
-                          onEditChanged: () async {},
-                          createdAt: null,
-                          updatedAt: null,
+                          onEditChanged: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditPage(
+                                  stockmemo: stockcard,
+                                ),
+                                fullscreenDialog: true,
+                              ),
+                            );
+                            model.fetchMemos();
+                          },
                         ),
                       )
                       .toList();
@@ -80,13 +99,17 @@ class ListPage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => EditPage(
+                builder: (
+                  context,
+                ) =>
+                    EditPage(
                   stockmemo: null,
                 ),
+                fullscreenDialog: true,
               ),
             );
           },
-          label: const Text('EditPage'),
+          label: const Text('新規登録'),
           icon: const Icon(Icons.add),
         ),
       ),

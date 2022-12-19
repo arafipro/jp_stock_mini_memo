@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jpstockmemo2/databases/tables.dart';
-import 'package:drift/drift.dart' as drift;
+import 'package:jpstockmemo2/models/stock_memo.dart';
+import 'package:jpstockmemo2/utils/dbhelper.dart';
+import 'package:intl/intl.dart';
 
 class EditModel extends ChangeNotifier {
   List<String> markets = ["プライム", "スタンダード", "グロース", "その他"];
@@ -12,12 +13,12 @@ class EditModel extends ChangeNotifier {
   String stockMarket = '';
   String stockMemo = '';
   // datetime型をDateFormatで日時のフォーマットを整える
-  // String stockCreatedAt = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString();
-  // String stockUpdatedAt = '';
+  String stockCreatedAt = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString();
+  String stockUpdatedAt = '';
 
   bool isLoading = false;
 
-  final StockMemoDatabase _db = StockMemoDatabase(); // データベースに接続
+  final dbhelp = DatabaseHelper();
 
   onChanged(String newValue) {
     _dropdownValue = newValue;
@@ -34,23 +35,54 @@ class EditModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future addMemo(StockMemosCompanion entity) async {
-    final entity = StockMemosCompanion(
-      code: drift.Value(stockCode),
-      stockname: drift.Value(stockName),
-      market: drift.Value(_dropdownValue),
-      memo: drift.Value(stockMemo),
+  Future addMemo() async {
+    StockMemo newMemo = StockMemo(
+      stockName,
+      stockCode,
+      // stockMarketはdropdownmenuの選択された値を代入
+      stockMarket = _dropdownValue,
+      stockMemo,
+      stockCreatedAt,
+      // 新規登録時は更新日時も同日同時間を登録
+      stockUpdatedAt = stockCreatedAt,
     );
-    await _db.insertMemo(entity);
+    await dbhelp.insertMemo(newMemo);
   }
 
   Future updateMemo(StockMemo memo) async {
-    final entity = StockMemosCompanion(
-      code: drift.Value(stockCode),
-      stockname: drift.Value(stockName),
-      market: drift.Value(_dropdownValue),
-      memo: drift.Value(stockMemo),
+    // stockNameが変更されない場合は元の値を代入
+    if (stockName.isEmpty) {
+      stockName = memo.name;
+    }
+    // stockCodeが変更されない場合は元の値を代入
+    if (stockCode.isEmpty) {
+      stockCode = memo.code;
+    }
+    // stockMarketが変更されない場合は元の値を代入
+    if (stockMarket.isEmpty) {
+      stockMarket = memo.market;
+    }
+    // stockMemoが変更されない場合は元の値を代入
+    if (stockMemo.isEmpty) {
+      stockMemo = memo.memo;
+    }
+
+    StockMemo changeMemo = StockMemo.withId(
+      memo.id,
+      stockName,
+      stockCode,
+      stockMarket,
+      stockMemo,
+      // 新規登録以降は登録日時を変更することはないので元の価を代入
+      stockCreatedAt = memo.createdAt,
+      // datetime型をDateFormatで日時のフォーマットを整える
+      stockUpdatedAt = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString(),
     );
-    await _db.updateMemo(entity);
+
+    if (memo.id != null) {
+      await dbhelp.updateMemo(changeMemo);
+    } else {
+      throw ('IDなし');
+    }
   }
 }

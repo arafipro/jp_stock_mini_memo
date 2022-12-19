@@ -19,8 +19,8 @@ updatedAt   ：更新日時
   final String? memo;
   final dynamic onDeleteChanged;
   final dynamic onEditChanged;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
 
   const StockCard({
     super.key,

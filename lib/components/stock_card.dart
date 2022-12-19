@@ -19,8 +19,8 @@ updatedAt   ：更新日時
   final String? memo;
   final dynamic onDeleteChanged;
   final dynamic onEditChanged;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
+  final String? createdAt;
+  final String? updatedAt;
 
   const StockCard({
     super.key,
@@ -37,78 +37,74 @@ updatedAt   ：更新日時
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: !isButtonMode ? onDeleteChanged : null,
-      onDoubleTap: !isButtonMode ? onEditChanged : null,
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            ListTile(
-              title: Column(
-                children: [
-                  Text(stockname!),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('($code)'),
-                      const SizedBox(
-                        width: 8,
-                      ),
-                      Text(market!),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Text(memo!),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Card(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          ListTile(
+            title: Column(
               children: [
-                Text('登録日時：$createdAt'),
-                Text('更新日時：$updatedAt'),
+                Text(stockname!),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('($code)'),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(market!),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Text(memo!),
+                ),
               ],
             ),
-            isButtonMode
-                ? ButtonBar(
-                    alignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          shape: const StadiumBorder(),
-                        ),
-                        icon: const Icon(Icons.edit),
-                        label: const Text('編集'),
-                        onPressed: onEditChanged,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text('登録日時：$createdAt'),
+              Text('更新日時：$updatedAt'),
+            ],
+          ),
+          isButtonMode
+              ? ButtonBar(
+                  alignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        shape: const StadiumBorder(),
                       ),
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          shape: const StadiumBorder(),
-                        ),
-                        icon: const Icon(Icons.delete),
-                        label: const Text('削除'),
-                        onPressed: onDeleteChanged,
+                      icon: const Icon(Icons.edit),
+                      label: const Text('編集'),
+                      onPressed: onEditChanged,
+                    ),
+                    ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        shape: const StadiumBorder(),
                       ),
-                    ],
-                  )
-                : const SizedBox(
-                    height: 8,
-                  ),
-          ],
-        ),
+                      icon: const Icon(Icons.delete),
+                      label: const Text('削除'),
+                      onPressed: onDeleteChanged,
+                    ),
+                  ],
+                )
+              : const SizedBox(
+                  height: 8,
+                ),
+        ],
       ),
     );
   }

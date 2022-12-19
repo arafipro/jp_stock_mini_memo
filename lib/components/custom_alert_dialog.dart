@@ -13,7 +13,7 @@ buttonText  ：ダイアログボタンタイトル
     super.key,
     required this.title,
     required this.buttonText,
-    required this.onPressed,
+    this.onPressed,
   });
 
   @override

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jpstockmemo2/views/list_page.dart';
-import 'package:drift/drift.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  driftRuntimeOptions.dontWarnAboutMultipleDatabases = true; // 警告を解決
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {

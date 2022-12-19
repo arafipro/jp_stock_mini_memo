@@ -3,6 +3,7 @@ import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/custom_text_form_field.dart';
 import 'package:jpstockmemo2/models/stock_memo.dart';
 import 'package:jpstockmemo2/viewmodels/edit_model.dart';
+import 'package:jpstockmemo2/views/list_page.dart';
 import 'package:provider/provider.dart';
 
 const List<String> markets = ["プライム", "スタンダード", "グロース", "その他"];
@@ -183,7 +184,12 @@ class EditPage extends StatelessWidget {
     BuildContext context,
   ) async {
     try {
-      final navigator = Navigator.of(context);
+      final navigator = Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ListPage(),
+        ),
+      );
       await model.addMemo();
       await showDialog(
         context: context,
@@ -196,7 +202,7 @@ class EditPage extends StatelessWidget {
           );
         },
       );
-      navigator.pop();
+      await navigator;
     } catch (e) {
       showDialog(
         context: context,

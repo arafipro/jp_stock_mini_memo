@@ -81,7 +81,6 @@ class ListPage extends StatelessWidget {
                                 fullscreenDialog: true,
                               ),
                             );
-                            model.fetchMemos();
                           },
                         ),
                       )

@@ -151,10 +151,10 @@ class EditPage extends StatelessWidget {
                           onPressed: () async {
                             model.startLoading();
                             if (_key.currentState!.validate()) {
-                              if (isUpdate) {
-                                await updateMemo(model, context);
-                              } else {
+                              if (!isUpdate) {
                                 await addMemo(model, context);
+                              } else {
+                                await updateMemo(model, context);
                               }
                             }
                             model.endLoading();
@@ -183,6 +183,7 @@ class EditPage extends StatelessWidget {
     BuildContext context,
   ) async {
     try {
+      final navigator = Navigator.of(context);
       await model.addMemo();
       await showDialog(
         context: context,
@@ -195,7 +196,7 @@ class EditPage extends StatelessWidget {
           );
         },
       );
-      Navigator.of(context).pop();
+      navigator.pop();
     } catch (e) {
       showDialog(
         context: context,
@@ -216,6 +217,7 @@ class EditPage extends StatelessWidget {
     BuildContext context,
   ) async {
     try {
+      final navigator = Navigator.of(context);
       await model.updateMemo(stockmemo!);
       await showDialog(
         context: context,
@@ -228,7 +230,7 @@ class EditPage extends StatelessWidget {
           );
         },
       );
-      Navigator.of(context).pop();
+      navigator.pop();
     } catch (e) {
       showDialog(
         context: context,

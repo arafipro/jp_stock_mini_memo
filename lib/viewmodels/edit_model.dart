@@ -13,7 +13,8 @@ class EditModel extends ChangeNotifier {
   String stockMarket = '';
   String stockMemo = '';
   // datetime型をDateFormatで日時のフォーマットを整える
-  String stockCreatedAt = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString();
+  String stockCreatedAt =
+      DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString();
   String stockUpdatedAt = '';
 
   bool isLoading = false;
@@ -76,7 +77,8 @@ class EditModel extends ChangeNotifier {
       // 新規登録以降は登録日時を変更することはないので元の価を代入
       stockCreatedAt = memo.createdAt,
       // datetime型をDateFormatで日時のフォーマットを整える
-      stockUpdatedAt = DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString(),
+      stockUpdatedAt =
+          DateFormat('yyyy/MM/dd HH:mm').format(DateTime.now()).toString(),
     );
 
     if (memo.id != null) {
@@ -84,5 +86,10 @@ class EditModel extends ChangeNotifier {
     } else {
       throw ('IDなし');
     }
+  }
+
+  void onTapGood3(void Function() onSuccess) async {
+    await Future.delayed(const Duration(milliseconds: 10));
+    onSuccess();
   }
 }

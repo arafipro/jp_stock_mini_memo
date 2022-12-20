@@ -6,40 +6,48 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
   static DatabaseHelper? _databaseHelper; // Singleton DatabaseHelper
-  static Database? _database; // Singleton Database
+  static Database? _database, memosDatabase; // Singleton Database
 
-  String memoTable = 'memo_table';    // テーブル名
-  String colId = 'id';                // KEY
-  String colName = 'name';            // 銘柄名
-  String colCode = 'code';            // 証券コード
-  String colmarket = 'market';        // 市場
-  String colMemo = 'memo';            // メモ
-  String colCreatedAt = 'createdAt';  // 登録日時
-  String colUpdatedAt = 'updatedAt';  // 更新日時
+  String memoTable = 'memo_table'; // テーブル名
+  String colId = 'id'; // KEY
+  String colName = 'name'; // 銘柄名
+  String colCode = 'code'; // 証券コード
+  String colmarket = 'market'; // 市場
+  String colMemo = 'memo'; // メモ
+  String colCreatedAt = 'createdAt'; // 登録日時
+  String colUpdatedAt = 'updatedAt'; // 更新日時
 
   DatabaseHelper._createInstance();
-  // Named constructor to create instance of DatabaseHelper(DatabaseHelperのインスタンスを作成するための名前付きコンストラクター)
+  // Named constructor to create instance of DatabaseHelper
+  // DatabaseHelperのインスタンスを作成するための名前付きコンストラクター
 
   factory DatabaseHelper() {
-    _databaseHelper ??= DatabaseHelper
-          ._createInstance();
-    return _databaseHelper!;
+    // https://dart-lang.github.io/linter/lints/prefer_conditional_assignment.html
+    // if (_databaseHelper == null) {
+    //   _databaseHelper = DatabaseHelper
+    //       ._createInstance();
+    // }
+    // return _databaseHelper;
+    return _databaseHelper ??= DatabaseHelper._createInstance();
   }
 
   Future<Database> get database async {
-    _database ??= await initializeDatabase();
-    return _database!;
+    // https://dart-lang.github.io/linter/lints/prefer_conditional_assignment.html
+    // if (_database == null) {
+    //   _database = await initializeDatabase();
+    // }
+    // return _database;
+    return _database ??= await initializeDatabase();
   }
 
   Future<Database> initializeDatabase() async {
     // Get the directory path for both Android and iOS to store database.
     Directory directory = await getApplicationDocumentsDirectory();
-    String path = '${directory.path}stockmemos.db';
+    String path = '${directory.path}/stockmemos.db';
 
     // Open/create the database at a given path
-    var memosDatabase = await openDatabase(path,
-        version: 1, onCreate: _createDb);
-    return memosDatabase;
+    return memosDatabase =
+        await openDatabase(path, version: 1, onCreate: _createDb);
   }
 
   void _createDb(Database db, int version) async {
@@ -47,8 +55,8 @@ class DatabaseHelper {
     await db.execute(
         """CREATE TABLE $memoTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT,
           $colCode TEXT, $colmarket TEXT, $colMemo TEXT, $colCreatedAt TIMESTAMP, $colUpdatedAt TIMESTAMP)""");
-        // """CREATE TABLE $memoTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT,
-        //   $colCode TEXT, $colmarket TEXT, $colMemo TEXT)""");
+    // """CREATE TABLE $memoTable($colId INTEGER PRIMARY KEY AUTOINCREMENT, $colName TEXT,
+    //   $colCode TEXT, $colmarket TEXT, $colMemo TEXT)""");
   }
 
   // void _upgradeDb(Database db, int oldVersion, int newVersion) async {

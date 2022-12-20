@@ -102,7 +102,9 @@ class EditPage extends StatelessWidget {
                                 model.onChanged(value!);
                                 stockmemo?.market = value;
                               },
-                              value: model.dropdownValue,
+                              value: isUpdate
+                                  ? stockmemo?.market
+                                  : model.dropdownValue,
                               items:
                                   model.markets.map<DropdownMenuItem<String>>(
                                 (String text) {

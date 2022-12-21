@@ -6,8 +6,6 @@ import 'package:jpstockmemo2/viewmodels/edit_model.dart';
 import 'package:jpstockmemo2/views/list_page.dart';
 import 'package:provider/provider.dart';
 
-const List<String> markets = ["プライム", "スタンダード", "グロース", "その他"];
-
 class EditPage extends StatelessWidget {
   final StockMemo? stockmemo;
   EditPage({
@@ -30,17 +28,24 @@ class EditPage extends StatelessWidget {
       codeController.text = stockmemo!.code;
       memoController.text = stockmemo!.memo;
     }
+
     return ChangeNotifierProvider<EditModel>(
       create: (_) => EditModel(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(isUpdate ? '日本株投資メモ - 編集' : '日本株投資メモ - 新規登録'),
+          title: Text(
+            isUpdate ? '日本株投資メモ - 編集' : '日本株投資メモ - 新規登録',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3,
+            ),
+          ),
         ),
         body: Consumer<EditModel>(
           builder: (
-            context,
-            model,
-            child,
+            BuildContext context,
+            EditModel model,
+            Widget? child,
           ) =>
               Column(
             children: [
@@ -165,6 +170,8 @@ class EditPage extends StatelessWidget {
                           child: Text(
                             isUpdate ? '編集完了' : '保存',
                             style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 3,
                               fontSize: 20,
                             ),
                           ),

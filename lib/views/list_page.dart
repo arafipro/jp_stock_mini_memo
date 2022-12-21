@@ -19,6 +19,10 @@ class ListPage extends StatelessWidget {
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
           title: const Text(
             '日本株投資メモ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3,
+            ),
           ),
         ),
         body: Column(
@@ -39,7 +43,7 @@ class ListPage extends StatelessWidget {
               child: Consumer<ListModel>(
                 builder: (
                   BuildContext context,
-                  model,
+                  ListModel model,
                   Widget? child,
                 ) {
                   final stockmemos = model.stockmemos;
@@ -108,7 +112,13 @@ class ListPage extends StatelessWidget {
               ),
             );
           },
-          label: const Text('新規登録'),
+          label: const Text(
+            '新規登録',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3,
+            ),
+          ),
           icon: const Icon(Icons.add),
         ),
       ),

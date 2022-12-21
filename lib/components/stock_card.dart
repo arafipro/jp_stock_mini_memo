@@ -44,18 +44,24 @@ updatedAt   ：更新日時
           ListTile(
             title: Column(
               children: [
-                Text(stockname!),
+                Text(
+                  stockname!,
+                ),
                 const SizedBox(
                   height: 8,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('($code)'),
+                    Text(
+                      '($code)',
+                    ),
                     const SizedBox(
                       width: 8,
                     ),
-                    Text(market!),
+                    Text(
+                      market!,
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -63,7 +69,9 @@ updatedAt   ：更新日時
                 ),
                 Padding(
                   padding: const EdgeInsets.all(4.0),
-                  child: Text(memo!),
+                  child: Text(
+                    memo!,
+                  ),
                 ),
               ],
             ),
@@ -74,8 +82,12 @@ updatedAt   ：更新日時
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text('登録日時：$createdAt'),
-              Text('更新日時：$updatedAt'),
+              Text(
+                '登録日時：$createdAt',
+              ),
+              Text(
+                '更新日時：$updatedAt',
+              ),
             ],
           ),
           isButtonMode
@@ -86,8 +98,16 @@ updatedAt   ：更新日時
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
                       ),
-                      icon: const Icon(Icons.edit),
-                      label: const Text('編集'),
+                      icon: const Icon(
+                        Icons.edit,
+                      ),
+                      label: const Text(
+                        '編集',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 3,
+                        ),
+                      ),
                       onPressed: onEditChanged,
                     ),
                     ElevatedButton.icon(
@@ -96,7 +116,13 @@ updatedAt   ：更新日時
                         shape: const StadiumBorder(),
                       ),
                       icon: const Icon(Icons.delete),
-                      label: const Text('削除'),
+                      label: const Text(
+                        '削除',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 3,
+                        ),
+                      ),
                       onPressed: onDeleteChanged,
                     ),
                   ],

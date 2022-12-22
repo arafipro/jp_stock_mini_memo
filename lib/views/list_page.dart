@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpstockmemo2/components/adbanner.dart';
 import 'package:provider/provider.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/stock_card.dart';
@@ -27,18 +28,7 @@ class ListPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const SizedBox(
-              height: 40,
-              child: Center(
-                child: Text(
-                  'Adbannar',
-                  style: TextStyle(
-                    fontSize: 30,
-                    backgroundColor: Colors.amber,
-                  ),
-                ),
-              ),
-            ),
+            AdBanner(),
             Expanded(
               child: Consumer<ListModel>(
                 builder: (

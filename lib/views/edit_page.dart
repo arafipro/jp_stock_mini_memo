@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpstockmemo2/components/adbanner.dart';
 import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
 import 'package:jpstockmemo2/components/custom_text_form_field.dart';
 import 'package:jpstockmemo2/models/stock_memo.dart';
@@ -49,18 +50,7 @@ class EditPage extends StatelessWidget {
           ) =>
               Column(
             children: [
-              const SizedBox(
-                height: 40,
-                child: Center(
-                  child: Text(
-                    'Adbannar',
-                    style: TextStyle(
-                      fontSize: 30,
-                      backgroundColor: Colors.amber,
-                    ),
-                  ),
-                ),
-              ),
+              AdBanner(),
               Expanded(
                 child: Form(
                   key: _key,
@@ -196,7 +186,7 @@ class EditPage extends StatelessWidget {
       final navigator = Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const ListPage(),
+          builder: (context) => ListPage(),
         ),
       );
       await model.addMemo();
@@ -235,7 +225,7 @@ class EditPage extends StatelessWidget {
       final navigator = Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const ListPage(),
+          builder: (context) => ListPage(),
         ),
       );
       await model.updateMemo(stockmemo!);

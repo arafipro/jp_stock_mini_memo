@@ -16,7 +16,7 @@ class AdBanner extends StatelessWidget {
     adUnitId: Platform.isAndroid
         ? 'ca-app-pub-3940256099942544/6300978111'
         : 'ca-app-pub-3940256099942544/2934735716',
-    size: AdSize.banner,
+    size: AdSize.fullBanner,
     request: const AdRequest(),
     listener: BannerAdListener(
       onAdLoaded: (Ad ad) => debugPrint('バナー広告がロードされました'),
@@ -39,7 +39,6 @@ class AdBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     myBanner.load();
     final AdWidget adWidget = AdWidget(ad: myBanner);
-
     return Container(
       alignment: Alignment.center,
       width: WidgetsBinding.instance.window.physicalSize.width,

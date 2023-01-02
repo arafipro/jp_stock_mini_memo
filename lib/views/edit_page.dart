@@ -74,7 +74,7 @@ class EditPage extends StatelessWidget {
                             return '４桁の半角数字を入力してください';
                           }
                         },
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.number,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +117,6 @@ class EditPage extends StatelessWidget {
                         controller: nameController,
                         labelText: '銘柄名',
                         maxLines: 1,
-                        maxLength: null,
                         onChanged: (text) {
                           model.stockName = text;
                         },
@@ -132,7 +131,7 @@ class EditPage extends StatelessWidget {
                         controller: memoController,
                         labelText: 'メモ',
                         maxLines: 10,
-                        maxLength: null,
+                        // maxLength: null,
                         onChanged: (text) {
                           model.stockMemo = text;
                         },
@@ -186,7 +185,7 @@ class EditPage extends StatelessWidget {
       final navigator = Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ListPage(),
+          builder: (context) => const ListPage(),
         ),
       );
       await model.addMemo();
@@ -225,7 +224,7 @@ class EditPage extends StatelessWidget {
       final navigator = Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => ListPage(),
+          builder: (context) => const ListPage(),
         ),
       );
       await model.updateMemo(stockmemo!);

@@ -41,39 +41,33 @@ updatedAt   ：更新日時
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          ListTile(
-            title: Column(
-              children: [
-                Text(
-                  stockname!,
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '($code)',
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Text(
-                      market!,
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Text(
-                    memo!,
-                  ),
-                ),
-              ],
+          Text(
+            stockname!, // 銘柄名
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                '($code)', // 証券コード
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Text(
+                market!, // 市場
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              memo!, // メモ
             ),
           ),
           const SizedBox(

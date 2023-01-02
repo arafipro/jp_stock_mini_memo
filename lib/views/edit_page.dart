@@ -140,7 +140,7 @@ class EditPage extends StatelessWidget {
                             return 'メモを入力してください';
                           }
                         },
-                        keyboardType: TextInputType.text,
+                        keyboardType: TextInputType.multiline,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),

@@ -78,9 +78,15 @@ updatedAt   ：更新日時
             children: [
               Text(
                 '登録日時：$createdAt',
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
               ),
               Text(
                 '更新日時：$updatedAt',
+                style: const TextStyle(
+                  fontSize: 14,
+                ),
               ),
             ],
           ),

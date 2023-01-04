@@ -60,7 +60,6 @@ class EditPage extends StatelessWidget {
                       CustomTextFormField(
                         controller: codeController,
                         labelText: '証券コード',
-                        maxLines: 1,
                         maxLength: 4,
                         onChanged: (text) {
                           model.stockCode = text;
@@ -77,7 +76,6 @@ class EditPage extends StatelessWidget {
                       CustomTextFormField(
                         controller: nameController,
                         labelText: '銘柄名',
-                        maxLines: 1,
                         onChanged: (text) {
                           model.stockName = text;
                         },
@@ -129,7 +127,6 @@ class EditPage extends StatelessWidget {
                         controller: memoController,
                         labelText: 'メモ',
                         maxLines: 10,
-                        // maxLength: null,
                         onChanged: (text) {
                           model.stockMemo = text;
                         },

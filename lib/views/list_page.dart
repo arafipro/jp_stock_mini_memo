@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jp_stock_mini_memo/components/adbanner.dart';
+import 'package:jp_stock_mini_memo/constants/text_style.dart';
 import 'package:provider/provider.dart';
 import 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
 import 'package:jp_stock_mini_memo/components/stock_card.dart';
@@ -19,11 +20,8 @@ class ListPage extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
           title: const Text(
-            '日本株投資ひとことメモ',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 3,
-            ),
+            appName,
+            style: appBarTitleTextStyle,
           ),
         ),
         body: Column(

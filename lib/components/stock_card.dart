@@ -79,11 +79,11 @@ updatedAt   ：更新日時
             children: [
               Text(
                 '登録日時：$createdAt',
-                style: datetimeFontSize,
+                style: dateTimeTextStyle,
               ),
               Text(
                 '更新日時：$updatedAt',
-                style: datetimeFontSize,
+                style: dateTimeTextStyle,
               ),
             ],
           ),

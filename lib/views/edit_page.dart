@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jp_stock_mini_memo/components/adbanner.dart';
 import 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
 import 'package:jp_stock_mini_memo/components/custom_text_form_field.dart';
+import 'package:jp_stock_mini_memo/constants/text_style.dart';
 import 'package:jp_stock_mini_memo/models/stock_memo.dart';
 import 'package:jp_stock_mini_memo/viewmodels/edit_model.dart';
 import 'package:jp_stock_mini_memo/views/list_page.dart';
@@ -35,11 +36,8 @@ class EditPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            isUpdate ? '日本株投資メモ - 編集' : '日本株投資メモ - 新規登録',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 3,
-            ),
+            isUpdate ? '$appName - 編集' : '$appName - 新規作成',
+            style: appBarTitleTextStyle,
           ),
         ),
         body: Consumer<EditModel>(

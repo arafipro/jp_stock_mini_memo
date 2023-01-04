@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jpstockmemo2/constants/text_style.dart';
 
 class StockCard extends StatelessWidget {
 /*　引数の詳細
@@ -78,15 +79,11 @@ updatedAt   ：更新日時
             children: [
               Text(
                 '登録日時：$createdAt',
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
+                style: datetimeFontSize,
               ),
               Text(
                 '更新日時：$updatedAt',
-                style: const TextStyle(
-                  fontSize: 14,
-                ),
+                style: datetimeFontSize,
               ),
             ],
           ),

@@ -19,7 +19,7 @@ class ListPage extends StatelessWidget {
         appBar: AppBar(
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
           title: const Text(
-            '日本株投資メモ',
+            '日本株投資ひとことメモ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
               letterSpacing: 3,

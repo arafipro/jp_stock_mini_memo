@@ -76,6 +76,20 @@ class EditPage extends StatelessWidget {
                         },
                         keyboardType: TextInputType.number,
                       ),
+                      CustomTextFormField(
+                        controller: nameController,
+                        labelText: '銘柄名',
+                        maxLines: 1,
+                        onChanged: (text) {
+                          model.stockName = text;
+                        },
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return '銘柄名を入力してください';
+                          }
+                        },
+                        keyboardType: TextInputType.text,
+                      ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -112,20 +126,6 @@ class EditPage extends StatelessWidget {
                             ),
                           ),
                         ],
-                      ),
-                      CustomTextFormField(
-                        controller: nameController,
-                        labelText: '銘柄名',
-                        maxLines: 1,
-                        onChanged: (text) {
-                          model.stockName = text;
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return '銘柄名を入力してください';
-                          }
-                        },
-                        keyboardType: TextInputType.text,
                       ),
                       CustomTextFormField(
                         controller: memoController,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jpstockmemo2/components/adbanner.dart';
+import 'package:jp_stock_mini_memo/components/adbanner.dart';
 import 'package:provider/provider.dart';
-import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
-import 'package:jpstockmemo2/components/stock_card.dart';
-import 'package:jpstockmemo2/viewmodels/list_model.dart';
-import 'package:jpstockmemo2/views/edit_page.dart';
+import 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
+import 'package:jp_stock_mini_memo/components/stock_card.dart';
+import 'package:jp_stock_mini_memo/viewmodels/list_model.dart';
+import 'package:jp_stock_mini_memo/views/edit_page.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({

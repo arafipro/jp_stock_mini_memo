@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.jpstockmemo2">
+    package="com.example.jp_stock_mini_memo">
    <application
-        android:label="jpstockmemo2"
+        android:label="jp_stock_mini_memo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

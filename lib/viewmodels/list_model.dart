@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jpstockmemo2/models/stock_memo.dart';
-import 'package:jpstockmemo2/utils/dbhelper.dart';
+import 'package:jp_stock_mini_memo/models/stock_memo.dart';
+import 'package:jp_stock_mini_memo/utils/dbhelper.dart';
 
 class ListModel extends ChangeNotifier {
   List<StockMemo> stockmemos = [];

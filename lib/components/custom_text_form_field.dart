@@ -14,7 +14,7 @@ class CustomTextFormField extends StatelessWidget {
     super.key,
     required this.controller,
     required this.labelText,
-    required this.maxLines,
+    this.maxLines = 1,
     this.maxLength,
     required this.onChanged,
     required this.validator,

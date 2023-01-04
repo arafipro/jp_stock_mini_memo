@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:jpstockmemo2/models/stock_memo.dart';
+import 'package:jp_stock_mini_memo/models/stock_memo.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 

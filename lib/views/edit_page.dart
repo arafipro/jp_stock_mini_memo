@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jpstockmemo2/components/adbanner.dart';
-import 'package:jpstockmemo2/components/custom_alert_dialog.dart';
-import 'package:jpstockmemo2/components/custom_text_form_field.dart';
-import 'package:jpstockmemo2/models/stock_memo.dart';
-import 'package:jpstockmemo2/viewmodels/edit_model.dart';
-import 'package:jpstockmemo2/views/list_page.dart';
+import 'package:jp_stock_mini_memo/components/adbanner.dart';
+import 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
+import 'package:jp_stock_mini_memo/components/custom_text_form_field.dart';
+import 'package:jp_stock_mini_memo/models/stock_memo.dart';
+import 'package:jp_stock_mini_memo/viewmodels/edit_model.dart';
+import 'package:jp_stock_mini_memo/views/list_page.dart';
 import 'package:provider/provider.dart';
 
 class EditPage extends StatelessWidget {

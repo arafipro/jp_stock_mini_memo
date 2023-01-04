@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jpstockmemo2/constants/text_style.dart';
+import 'package:jp_stock_mini_memo/constants/text_style.dart';
 
 class StockCard extends StatelessWidget {
 /*　引数の詳細

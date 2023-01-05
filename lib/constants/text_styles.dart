@@ -1,6 +1,7 @@
 import 'package:jp_stock_mini_memo/constants/imports.dart';
 
-const TextStyle appBarTitleTextStyle = TextStyle(
+const TextStyle titleTextStyle = TextStyle(
+  color: textColor,
   fontWeight: FontWeight.bold,
   fontSize: 16,
   letterSpacing: 3,

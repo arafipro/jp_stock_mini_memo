@@ -92,6 +92,7 @@ updatedAt   ：更新日時
                   children: <Widget>[
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
+                        backgroundColor: buttonColor,
                         shape: const StadiumBorder(),
                       ),
                       icon: const Icon(
@@ -99,10 +100,7 @@ updatedAt   ：更新日時
                       ),
                       label: const Text(
                         '編集',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 3,
-                        ),
+                        style: titleTextStyle,
                       ),
                       onPressed: onEditChanged,
                     ),
@@ -114,10 +112,7 @@ updatedAt   ：更新日時
                       icon: const Icon(Icons.delete),
                       label: const Text(
                         '削除',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 3,
-                        ),
+                        style: titleTextStyle,
                       ),
                       onPressed: onDeleteChanged,
                     ),

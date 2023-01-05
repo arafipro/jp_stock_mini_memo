@@ -26,10 +26,12 @@ class EditPage extends StatelessWidget {
     return ChangeNotifierProvider<EditModel>(
       create: (_) => EditModel(),
       child: Scaffold(
+        backgroundColor: bodyColor,
         appBar: AppBar(
+          backgroundColor: appBarColor,
           title: Text(
             isUpdate ? '$appName - 編集' : '$appName - 新規作成',
-            style: appBarTitleTextStyle,
+            style: titleTextStyle,
           ),
         ),
         body: Consumer<EditModel>(
@@ -132,6 +134,11 @@ class EditPage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(
+                              buttonColor,
+                            ),
+                          ),
                           onPressed: () async {
                             model.startLoading();
                             if (_key.currentState!.validate()) {
@@ -146,6 +153,7 @@ class EditPage extends StatelessWidget {
                           child: Text(
                             isUpdate ? '編集完了' : '保存',
                             style: const TextStyle(
+                              color: textColor,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 3,
                               fontSize: 20,

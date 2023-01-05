@@ -10,11 +10,13 @@ class ListPage extends StatelessWidget {
     return ChangeNotifierProvider<ListModel>(
       create: (_) => ListModel()..fetchMemos(),
       child: Scaffold(
+        backgroundColor: bodyColor,
         appBar: AppBar(
+          backgroundColor: appBarColor,
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
           title: const Text(
             appName,
-            style: appBarTitleTextStyle,
+            style: titleTextStyle,
           ),
         ),
         body: Column(
@@ -79,6 +81,7 @@ class ListPage extends StatelessWidget {
           ],
         ),
         floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: buttonColor,
           onPressed: () {
             Navigator.push(
               context,
@@ -93,13 +96,7 @@ class ListPage extends StatelessWidget {
               ),
             );
           },
-          label: const Text(
-            '新規登録',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              letterSpacing: 3,
-            ),
-          ),
+          label: const Text('新規登録', style: titleTextStyle),
           icon: const Icon(Icons.add),
         ),
       ),

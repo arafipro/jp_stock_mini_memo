@@ -1,12 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:jp_stock_mini_memo/components/adbanner.dart';
-import 'package:jp_stock_mini_memo/constants/text_styles.dart';
-import 'package:jp_stock_mini_memo/constants/texts.dart';
-import 'package:provider/provider.dart';
-import 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
-import 'package:jp_stock_mini_memo/components/stock_card.dart';
-import 'package:jp_stock_mini_memo/viewmodels/list_model.dart';
-import 'package:jp_stock_mini_memo/views/edit_page.dart';
+import 'package:jp_stock_mini_memo/constants/imports.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:jp_stock_mini_memo/constants/imports.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});

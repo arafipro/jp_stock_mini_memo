@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:jp_stock_mini_memo/constants/imports.dart';
 
 class CustomAlertDialog extends StatelessWidget {
 /*　引数の詳細

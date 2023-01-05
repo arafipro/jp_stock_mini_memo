@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:jp_stock_mini_memo/constants/imports.dart';
 
 // https://mycolor.space/?hex=%230C8874&sub=1
 const Color appBarColor = Color(0xFF0C8874);

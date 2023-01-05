@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:jp_stock_mini_memo/views/list_page.dart';
+import 'package:jp_stock_mini_memo/constants/imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

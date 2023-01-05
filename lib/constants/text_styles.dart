@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-const appName = "日本株ひとこと投資メモ";
 const TextStyle appBarTitleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 16,

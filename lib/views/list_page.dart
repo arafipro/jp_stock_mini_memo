@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jp_stock_mini_memo/components/adbanner.dart';
-import 'package:jp_stock_mini_memo/constants/text_style.dart';
+import 'package:jp_stock_mini_memo/constants/text_styles.dart';
+import 'package:jp_stock_mini_memo/constants/texts.dart';
 import 'package:provider/provider.dart';
 import 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
 import 'package:jp_stock_mini_memo/components/stock_card.dart';

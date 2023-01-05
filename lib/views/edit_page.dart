@@ -30,8 +30,8 @@ class EditPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: appBarColor,
           title: Text(
-            isUpdate ? '$appName - 編集' : '$appName - 新規作成',
-            style: titleTextStyle,
+            isUpdate ? '$appNameShort - 編集' : '$appNameShort - 新規作成',
+            style: titleTextStyle20,
           ),
         ),
         body: Consumer<EditModel>(
@@ -152,12 +152,7 @@ class EditPage extends StatelessWidget {
                           },
                           child: Text(
                             isUpdate ? '編集完了' : '保存',
-                            style: const TextStyle(
-                              color: textColor,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 3,
-                              fontSize: 20,
-                            ),
+                            style: titleTextStyle20,
                           ),
                         ),
                       )

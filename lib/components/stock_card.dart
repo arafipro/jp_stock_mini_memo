@@ -38,51 +38,48 @@ updatedAt   ：更新日時
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: cardBodyColor,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text(
-            stockname!, // 銘柄名
-          ),
-          const SizedBox(
-            height: 8,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '($code)', // 証券コード
+                stockname!, // 銘柄名
+                style: fontSize18,
               ),
-              const SizedBox(
-                width: 8,
-              ),
+              sizedBoxHeight8,
               Text(
-                market!, // 市場
+                '($code)', // 証券コード
+                style: fontSize16,
               ),
             ],
           ),
-          const SizedBox(
-            height: 8,
+          sizedBoxHeight8,
+          Text(
+            market!, // 市場
+            style: fontSize14,
           ),
+          sizedBoxHeight8,
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Text(
               memo!, // メモ
+              style: fontSize16,
             ),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          sizedBoxHeight8,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
                 '登録日時：$createdAt',
-                style: dateTimeTextStyle,
+                style: fontSize14,
               ),
               Text(
                 '更新日時：$updatedAt',
-                style: dateTimeTextStyle,
+                style: fontSize14,
               ),
             ],
           ),
@@ -100,7 +97,7 @@ updatedAt   ：更新日時
                       ),
                       label: const Text(
                         '編集',
-                        style: titleTextStyle,
+                        style: titleTextStyle16,
                       ),
                       onPressed: onEditChanged,
                     ),
@@ -109,18 +106,18 @@ updatedAt   ：更新日時
                         backgroundColor: Colors.red,
                         shape: const StadiumBorder(),
                       ),
-                      icon: const Icon(Icons.delete),
+                      icon: const Icon(
+                        Icons.delete,
+                      ),
                       label: const Text(
                         '削除',
-                        style: titleTextStyle,
+                        style: titleTextStyle16,
                       ),
                       onPressed: onDeleteChanged,
                     ),
                   ],
                 )
-              : const SizedBox(
-                  height: 8,
-                ),
+              : sizedBoxHeight8,
         ],
       ),
     );

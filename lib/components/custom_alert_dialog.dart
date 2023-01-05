@@ -19,12 +19,21 @@ buttonText  ：ダイアログボタンタイトル
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title),
+      title: Text(
+        title,
+      ),
+      backgroundColor: bodyColor,
       actions: <Widget>[
         ElevatedButton(
-          onPressed: onPressed ?? () {
-                  Navigator.of(context).pop();
-                },
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+              buttonColor,
+            ),
+          ),
+          onPressed: onPressed ??
+              () {
+                Navigator.of(context).pop();
+              },
           child: Text(buttonText),
         ),
       ],

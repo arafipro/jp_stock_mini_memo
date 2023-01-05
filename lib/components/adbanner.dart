@@ -1,6 +1,4 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:jp_stock_mini_memo/constants/imports.dart';
 
 // 参考サイト
 // https://uedive.net/2021/5410/flutter2-gad/

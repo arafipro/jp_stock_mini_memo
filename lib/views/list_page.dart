@@ -16,7 +16,7 @@ class ListPage extends StatelessWidget {
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
           title: const Text(
             appName,
-            style: titleTextStyle,
+            style: titleTextStyle20,
           ),
         ),
         body: Column(
@@ -96,7 +96,10 @@ class ListPage extends StatelessWidget {
               ),
             );
           },
-          label: const Text('新規登録', style: titleTextStyle),
+          label: const Text(
+            '新規登録',
+            style: titleTextStyle16,
+          ),
           icon: const Icon(Icons.add),
         ),
       ),

@@ -19,6 +19,7 @@ export 'package:jp_stock_mini_memo/components/custom_text_form_field.dart';
 export 'package:jp_stock_mini_memo/components/stock_card.dart';
 
 // constants
+export 'package:jp_stock_mini_memo/constants/box_styles.dart';
 export 'package:jp_stock_mini_memo/constants/colors.dart';
 export 'package:jp_stock_mini_memo/constants/text_styles.dart';
 export 'package:jp_stock_mini_memo/constants/texts.dart';

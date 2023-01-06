@@ -22,7 +22,6 @@ buttonText  ：ダイアログボタンタイトル
       title: Text(
         title,
       ),
-      backgroundColor: bgColor,
       actions: <Widget>[
         ElevatedButton(
           style: ButtonStyle(

@@ -2,8 +2,8 @@ import 'package:jp_stock_mini_memo/constants/imports.dart';
 import 'package:intl/intl.dart';
 
 class EditModel extends ChangeNotifier {
-  List<String> markets = ["プライム", "スタンダード", "グロース", "その他"];
-  String _dropdownValue = "プライム";
+  List<String> markets = ["東証プライム", "東証スタンダード", "東証グロース", "その他"];
+  String _dropdownValue = "東証プライム";
   String get dropdownValue => _dropdownValue;
 
   String stockName = '';

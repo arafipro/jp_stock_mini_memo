@@ -10,7 +10,7 @@ class ListPage extends StatelessWidget {
     return ChangeNotifierProvider<ListModel>(
       create: (_) => ListModel()..fetchMemos(),
       child: Scaffold(
-        backgroundColor: bodyColor,
+        backgroundColor: bgColor,
         appBar: AppBar(
           backgroundColor: appBarColor,
           automaticallyImplyLeading: false, // 戻るボタンを表示しない

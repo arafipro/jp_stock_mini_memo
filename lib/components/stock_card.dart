@@ -38,7 +38,6 @@ updatedAt   ：更新日時
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: cardBodyColor,
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: [

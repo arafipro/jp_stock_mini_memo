@@ -26,7 +26,6 @@ class EditPage extends StatelessWidget {
     return ChangeNotifierProvider<EditModel>(
       create: (_) => EditModel(),
       child: Scaffold(
-        backgroundColor: bodyColor,
         appBar: AppBar(
           backgroundColor: appBarColor,
           title: Text(

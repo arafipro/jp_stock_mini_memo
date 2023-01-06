@@ -38,86 +38,89 @@ updatedAt   ：更新日時
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                stockname!, // 銘柄名
-                style: fontSize18,
-              ),
-              sizedBoxWidth8,
-              Text(
-                '($code)', // 証券コード
+      child: Center(
+        widthFactor: 200,
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  stockname!, // 銘柄名
+                  style: fontSize18,
+                ),
+                sizedBoxWidth8,
+                Text(
+                  '($code)', // 証券コード
+                  style: fontSize16,
+                ),
+              ],
+            ),
+            sizedBoxHeight8,
+            Text(
+              market!, // 市場
+              style: fontSize14,
+            ),
+            sizedBoxHeight8,
+            Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                memo!, // メモ
                 style: fontSize16,
               ),
-            ],
-          ),
-          sizedBoxHeight8,
-          Text(
-            market!, // 市場
-            style: fontSize14,
-          ),
-          sizedBoxHeight8,
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Text(
-              memo!, // メモ
-              style: fontSize16,
             ),
-          ),
-          sizedBoxHeight8,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                '登録日時：$createdAt',
-                style: fontSize14,
-              ),
-              Text(
-                '更新日時：$updatedAt',
-                style: fontSize14,
-              ),
-            ],
-          ),
-          isButtonMode
-              ? ButtonBar(
-                  alignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: buttonColor,
-                        shape: const StadiumBorder(),
+            sizedBoxHeight8,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  '登録日時：$createdAt',
+                  style: fontSize14,
+                ),
+                Text(
+                  '更新日時：$updatedAt',
+                  style: fontSize14,
+                ),
+              ],
+            ),
+            isButtonMode
+                ? ButtonBar(
+                    alignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: buttonColor,
+                          shape: const StadiumBorder(),
+                        ),
+                        icon: const Icon(
+                          Icons.edit,
+                        ),
+                        label: const Text(
+                          '編集',
+                          style: titleTextStyle16,
+                        ),
+                        onPressed: onEditChanged,
                       ),
-                      icon: const Icon(
-                        Icons.edit,
+                      ElevatedButton.icon(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.red,
+                          shape: const StadiumBorder(),
+                        ),
+                        icon: const Icon(
+                          Icons.delete,
+                        ),
+                        label: const Text(
+                          '削除',
+                          style: titleTextStyle16,
+                        ),
+                        onPressed: onDeleteChanged,
                       ),
-                      label: const Text(
-                        '編集',
-                        style: titleTextStyle16,
-                      ),
-                      onPressed: onEditChanged,
-                    ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
-                        shape: const StadiumBorder(),
-                      ),
-                      icon: const Icon(
-                        Icons.delete,
-                      ),
-                      label: const Text(
-                        '削除',
-                        style: titleTextStyle16,
-                      ),
-                      onPressed: onDeleteChanged,
-                    ),
-                  ],
-                )
-              : sizedBoxHeight8,
-        ],
+                    ],
+                  )
+                : sizedBoxHeight8,
+          ],
+        ),
       ),
     );
   }

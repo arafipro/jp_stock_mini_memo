@@ -54,6 +54,7 @@ class EditPage extends StatelessWidget {
                       CustomTextFormField(
                         controller: codeController,
                         labelText: '証券コード',
+                        hintText: '4桁の半角数字を入力してください',
                         maxLength: 4,
                         onChanged: (text) {
                           model.stockCode = text;

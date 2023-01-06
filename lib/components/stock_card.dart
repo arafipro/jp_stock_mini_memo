@@ -49,7 +49,7 @@ updatedAt   ：更新日時
                 stockname!, // 銘柄名
                 style: fontSize18,
               ),
-              sizedBoxHeight8,
+              sizedBoxWidth8,
               Text(
                 '($code)', // 証券コード
                 style: fontSize16,

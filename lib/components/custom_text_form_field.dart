@@ -1,4 +1,4 @@
-import 'package:jp_stock_mini_memo/constants/imports.dart';
+import 'package:jpstockminimemo/constants/imports.dart';
 
 // TextFormFieldコンポーネント
 class CustomTextFormField extends StatelessWidget {

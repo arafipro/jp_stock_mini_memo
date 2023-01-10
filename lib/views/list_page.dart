@@ -1,4 +1,4 @@
-import 'package:jp_stock_mini_memo/constants/imports.dart';
+import 'package:jpstockminimemo/constants/imports.dart';
 
 class ListPage extends StatelessWidget {
   const ListPage({
@@ -21,7 +21,7 @@ class ListPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            AdBanner(),
+            // AdBanner(),
             Expanded(
               child: Consumer<ListModel>(
                 builder: (

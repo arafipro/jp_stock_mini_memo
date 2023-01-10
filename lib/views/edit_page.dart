@@ -1,4 +1,4 @@
-import 'package:jp_stock_mini_memo/constants/imports.dart';
+import 'package:jpstockminimemo/constants/imports.dart';
 
 class EditPage extends StatelessWidget {
   final StockMemo? stockmemo;
@@ -41,7 +41,7 @@ class EditPage extends StatelessWidget {
           ) =>
               Column(
             children: [
-              AdBanner(),
+              // AdBanner(),
               Expanded(
                 child: Form(
                   key: _key,

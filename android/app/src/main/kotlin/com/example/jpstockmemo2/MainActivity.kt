@@ -1,4 +1,4 @@
-package com.arafipro.jp_stock_mini_memo
+package com.arafipro.jpstockminimemo
 
 import io.flutter.embedding.android.FlutterActivity
 

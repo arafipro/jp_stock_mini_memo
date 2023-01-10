@@ -13,27 +13,27 @@ export 'package:path_provider/path_provider.dart';
 export 'package:sqflite/sqflite.dart';
 
 // components
-export 'package:jp_stock_mini_memo/components/adbanner.dart';
-export 'package:jp_stock_mini_memo/components/custom_alert_dialog.dart';
-export 'package:jp_stock_mini_memo/components/custom_text_form_field.dart';
-export 'package:jp_stock_mini_memo/components/stock_card.dart';
+export 'package:jpstockminimemo/components/adbanner.dart';
+export 'package:jpstockminimemo/components/custom_alert_dialog.dart';
+export 'package:jpstockminimemo/components/custom_text_form_field.dart';
+export 'package:jpstockminimemo/components/stock_card.dart';
 
 // constants
-export 'package:jp_stock_mini_memo/constants/box_styles.dart';
-export 'package:jp_stock_mini_memo/constants/colors.dart';
-export 'package:jp_stock_mini_memo/constants/text_styles.dart';
-export 'package:jp_stock_mini_memo/constants/texts.dart';
+export 'package:jpstockminimemo/constants/box_styles.dart';
+export 'package:jpstockminimemo/constants/colors.dart';
+export 'package:jpstockminimemo/constants/text_styles.dart';
+export 'package:jpstockminimemo/constants/texts.dart';
 
 // models
-export 'package:jp_stock_mini_memo/models/stock_memo.dart';
+export 'package:jpstockminimemo/models/stock_memo.dart';
 
 // utils
-export 'package:jp_stock_mini_memo/utils/dbhelper.dart';
+export 'package:jpstockminimemo/utils/dbhelper.dart';
 
 // viewmodels
-export 'package:jp_stock_mini_memo/viewmodels/list_model.dart';
-export 'package:jp_stock_mini_memo/viewmodels/edit_model.dart';
+export 'package:jpstockminimemo/viewmodels/list_model.dart';
+export 'package:jpstockminimemo/viewmodels/edit_model.dart';
 
 // views
-export 'package:jp_stock_mini_memo/views/list_page.dart';
-export 'package:jp_stock_mini_memo/views/edit_page.dart';
+export 'package:jpstockminimemo/views/list_page.dart';
+export 'package:jpstockminimemo/views/edit_page.dart';

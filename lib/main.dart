@@ -2,7 +2,7 @@ import 'package:jpstockminimemo/constants/imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MobileAds.instance.initialize();
+  // MobileAds.instance.initialize();
   runApp(
     const MyApp(),
   );

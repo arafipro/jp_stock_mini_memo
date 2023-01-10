@@ -73,6 +73,7 @@ class ListPage extends StatelessWidget {
                       )
                       .toList();
                   return ListView(
+                    key: GlobalKey(),
                     children: stockcards,
                   );
                 },

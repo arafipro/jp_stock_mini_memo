@@ -39,7 +39,6 @@ updatedAt   ：更新日時
   Widget build(BuildContext context) {
     return Card(
       child: Center(
-        widthFactor: 200,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [

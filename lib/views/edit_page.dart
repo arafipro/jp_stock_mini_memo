@@ -26,6 +26,7 @@ class EditPage extends StatelessWidget {
     return ChangeNotifierProvider<EditModel>(
       create: (_) => EditModel(),
       child: Scaffold(
+        backgroundColor: bgColor,
         appBar: AppBar(
           backgroundColor: appBarColor,
           title: Text(
@@ -50,22 +51,25 @@ class EditPage extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      CustomTextFormField(
-                        controller: codeController,
-                        labelText: '証券コード',
-                        hintText: '4桁の半角数字を入力してください',
-                        maxLength: 4,
-                        onChanged: (text) {
-                          model.stockCode = text;
-                        },
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return '証券コードを入力してください';
-                          } else if (!RegExp(r"\d{4}").hasMatch(value)) {
-                            return '４桁の半角数字を入力してください';
-                          }
-                        },
-                        keyboardType: TextInputType.number,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: CustomTextFormField(
+                          controller: codeController,
+                          labelText: '証券コード',
+                          hintText: '4桁の半角数字を入力してください',
+                          maxLength: 4,
+                          onChanged: (text) {
+                            model.stockCode = text;
+                          },
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return '証券コードを入力してください';
+                            } else if (!RegExp(r"\d{4}").hasMatch(value)) {
+                              return '４桁の半角数字を入力してください';
+                            }
+                          },
+                          keyboardType: TextInputType.number,
+                        ),
                       ),
                       CustomTextFormField(
                         controller: nameController,
@@ -132,7 +136,7 @@ class EditPage extends StatelessWidget {
                         keyboardType: TextInputType.multiline,
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(12.0),
                         child: ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(

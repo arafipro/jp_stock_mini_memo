@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.arafipro.jpstockminimemo">
    <application
-        android:label="jpstockminimemo"
+        android:label="日本株ひとこと投資メモ"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

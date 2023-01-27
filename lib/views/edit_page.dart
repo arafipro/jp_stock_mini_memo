@@ -182,8 +182,7 @@ class EditPage extends StatelessWidget {
           builder: (context) => const ListPage(),
         ),
       );
-      await model.addMemo();
-      await showDialog(
+      final dialogResult = showDialog(
         context: context,
         builder: (
           BuildContext context,
@@ -194,6 +193,8 @@ class EditPage extends StatelessWidget {
           );
         },
       );
+      await model.addMemo();
+      await dialogResult;
       await navigator;
     } catch (e) {
       showDialog(
@@ -221,8 +222,7 @@ class EditPage extends StatelessWidget {
           builder: (context) => const ListPage(),
         ),
       );
-      await model.updateMemo(stockmemo!);
-      await showDialog(
+      final dialogResult = showDialog(
         context: context,
         builder: (
           BuildContext context,
@@ -233,6 +233,8 @@ class EditPage extends StatelessWidget {
           );
         },
       );
+      await model.updateMemo(stockmemo!);
+      await dialogResult;
       await navigator;
     } catch (e) {
       showDialog(

@@ -14,6 +14,23 @@ class ListPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: appBarColor,
           automaticallyImplyLeading: false, // 戻るボタンを表示しない
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (
+                      context,
+                    ) =>
+                        const SettingsPage(),
+                    // fullscreenDialog: true,
+                  ),
+                );
+              },
+            ),
+          ],
           title: const Text(
             appName,
             style: titleTextStyle20,

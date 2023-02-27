@@ -32,13 +32,26 @@ class MyApp extends StatelessWidget {
             SettingsModel model,
             Widget? child,
           ) =>
-              Scaffold(
-            // いきなり入力の設定値を取得
-            body: model.startEditPage
-                ? EditPage(
-                    stockmemo: null,
-                  )
-                : const ListPage(),
+              FutureBuilder(
+            future: Future.delayed(
+              const Duration(milliseconds: 500),
+            ),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Scaffold(
+                  body: LoadPage(),
+                );
+              } else {
+                return Scaffold(
+                  // いきなり入力の設定値を取得
+                  body: model.startEditPage
+                      ? EditPage(
+                          stockmemo: null,
+                        )
+                      : const ListPage(),
+                );
+              }
+            },
           ),
         ),
       ),

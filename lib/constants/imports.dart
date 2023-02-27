@@ -37,6 +37,7 @@ export 'package:jpstockminimemo/viewmodels/edit_model.dart';
 export 'package:jpstockminimemo/viewmodels/settings_model.dart';
 
 // views
+export 'package:jpstockminimemo/views/load_page.dart';
 export 'package:jpstockminimemo/views/list_page.dart';
 export 'package:jpstockminimemo/views/edit_page.dart';
 export 'package:jpstockminimemo/views/settings_page.dart';

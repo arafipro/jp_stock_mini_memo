@@ -18,14 +18,37 @@ class ListPage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.settings),
               onPressed: () async {
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (
                       context,
-                    ) =>
-                        const SettingsPage(),
-                    // fullscreenDialog: true,
+                      animation,
+                      secondaryAnimation,
+                    ) {
+                      return const SettingsPage();
+                    },
+                    transitionsBuilder: (
+                      context,
+                      animation,
+                      secondaryAnimation,
+                      child,
+                    ) {
+                      const Offset begin = Offset(1.0, 0.0); // 右から左
+                      // final Offset begin = Offset(-1.0, 0.0); // 左から右
+                      const Offset end = Offset.zero;
+                      final Animatable<Offset> tween = Tween(
+                        begin: begin,
+                        end: end,
+                      ).chain(
+                        CurveTween(curve: Curves.easeInOut),
+                      );
+                      final Animation<Offset> offsetAnimation =
+                          animation.drive(tween);
+                      return SlideTransition(
+                        position: offsetAnimation,
+                        child: child,
+                      );
+                    },
                   ),
                 );
               },

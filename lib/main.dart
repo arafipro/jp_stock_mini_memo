@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
             SettingsModel model,
             Widget? child,
           ) =>
+          // 起動時にオープニング画面を表示
               FutureBuilder(
             future: Future.delayed(
               const Duration(milliseconds: 500),

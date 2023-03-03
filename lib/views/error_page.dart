@@ -1,4 +1,4 @@
-import 'package:jpstockminimemo/constants/imports.dart';
+import "package:jpstockminimemo/constants/imports.dart";
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});

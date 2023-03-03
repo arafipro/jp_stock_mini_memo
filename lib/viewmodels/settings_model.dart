@@ -1,4 +1,4 @@
-import 'package:jpstockminimemo/constants/imports.dart';
+import "package:jpstockminimemo/constants/imports.dart";
 
 class SettingsModel with ChangeNotifier {
   // いきなり入力初期値

@@ -1,4 +1,4 @@
-import 'package:jpstockminimemo/constants/imports.dart';
+import "package:jpstockminimemo/constants/imports.dart";
 
 class EditPage extends StatelessWidget {
   final StockMemo? stockmemo;
@@ -30,7 +30,7 @@ class EditPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: appBarColor,
           title: Text(
-            isUpdate ? '$appNameShort - 編集' : '$appNameShort - 新規作成',
+            isUpdate ? "$appNameShort - 編集" : "$appNameShort - 新規作成",
             style: titleTextStyle20,
           ),
           leading: IconButton(
@@ -70,17 +70,17 @@ class EditPage extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 8.0),
                         child: CustomTextFormField(
                           controller: codeController,
-                          labelText: '証券コード',
-                          hintText: '4桁の半角数字を入力してください',
+                          labelText: "証券コード",
+                          hintText: "4桁の半角数字を入力してください",
                           maxLength: 4,
                           onChanged: (text) {
                             model.stockCode = text;
                           },
                           validator: (value) {
                             if (value.isEmpty) {
-                              return '証券コードを入力してください';
+                              return "証券コードを入力してください";
                             } else if (!RegExp(r"\d{4}").hasMatch(value)) {
-                              return '４桁の半角数字を入力してください';
+                              return "４桁の半角数字を入力してください";
                             }
                           },
                           keyboardType: TextInputType.number,
@@ -88,13 +88,13 @@ class EditPage extends StatelessWidget {
                       ),
                       CustomTextFormField(
                         controller: nameController,
-                        labelText: '銘柄名',
+                        labelText: "銘柄名",
                         onChanged: (text) {
                           model.stockName = text;
                         },
                         validator: (value) {
                           if (value.isEmpty) {
-                            return '銘柄名を入力してください';
+                            return "銘柄名を入力してください";
                           }
                         },
                         keyboardType: TextInputType.text,
@@ -104,7 +104,7 @@ class EditPage extends StatelessWidget {
                         children: [
                           ListTile(
                             title: const Text(
-                              '市場',
+                              "市場",
                               style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w300,
@@ -138,14 +138,14 @@ class EditPage extends StatelessWidget {
                       ),
                       CustomTextFormField(
                         controller: memoController,
-                        labelText: 'メモ',
+                        labelText: "メモ",
                         maxLines: 10,
                         onChanged: (text) {
                           model.stockMemo = text;
                         },
                         validator: (value) {
                           if (value.isEmpty) {
-                            return 'メモを入力してください';
+                            return "メモを入力してください";
                           }
                         },
                         keyboardType: TextInputType.multiline,
@@ -170,7 +170,7 @@ class EditPage extends StatelessWidget {
                             model.endLoading();
                           },
                           child: Text(
-                            isUpdate ? '編集完了' : '保存',
+                            isUpdate ? "編集完了" : "保存",
                             style: titleTextStyle20,
                           ),
                         ),
@@ -203,8 +203,8 @@ class EditPage extends StatelessWidget {
           BuildContext context,
         ) {
           return const CustomAlertDialog(
-            title: '保存しました',
-            buttonText: 'OK',
+            title: "保存しました",
+            buttonText: "OK",
           );
         },
       );
@@ -219,7 +219,7 @@ class EditPage extends StatelessWidget {
         ) {
           return CustomAlertDialog(
             title: e.toString(),
-            buttonText: 'OK',
+            buttonText: "OK",
           );
         },
       );
@@ -243,8 +243,8 @@ class EditPage extends StatelessWidget {
           BuildContext context,
         ) {
           return const CustomAlertDialog(
-            title: '変更しました',
-            buttonText: 'OK',
+            title: "変更しました",
+            buttonText: "OK",
           );
         },
       );
@@ -259,7 +259,7 @@ class EditPage extends StatelessWidget {
         ) {
           return CustomAlertDialog(
             title: e.toString(),
-            buttonText: 'OK',
+            buttonText: "OK",
           );
         },
       );

@@ -1,4 +1,4 @@
-import 'package:jpstockminimemo/constants/imports.dart';
+import "package:jpstockminimemo/constants/imports.dart";
 
 class LoadPage extends StatelessWidget {
   const LoadPage({super.key});

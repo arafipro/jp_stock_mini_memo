@@ -1,4 +1,4 @@
-import 'package:jpstockminimemo/constants/imports.dart';
+import "package:jpstockminimemo/constants/imports.dart";
 
 class CustomAlertDialog extends StatelessWidget {
 /*　引数の詳細

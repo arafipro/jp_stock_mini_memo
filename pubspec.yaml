@@ -27,6 +27,7 @@ dependencies:
   google_mobile_ads: ^2.3.0
   shared_preferences: ^2.0.18
   package_info_plus: ^3.0.3
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -44,3 +45,5 @@ flutter_icons:
   image_path_ios: 'assets/icons/icon_ios.png'
 flutter:
   uses-material-design: true
+  assets:
+    - .env # .envの設定を追加.

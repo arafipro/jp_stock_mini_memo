@@ -3,6 +3,8 @@ import "package:jpstockminimemo/constants/imports.dart";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  // .envを読み込めるように設定.
+  await dotenv.load(fileName: ".env");
   runApp(
     const MyApp(),
   );
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
             SettingsModel model,
             Widget? child,
           ) =>
-          // 起動時にオープニング画面を表示
+              // 起動時にオープニング画面を表示
               FutureBuilder(
             future: Future.delayed(
               const Duration(milliseconds: 500),

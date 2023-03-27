@@ -14,3 +14,10 @@
 |v1.0.1|2023.01.16|アプリの画面デザインを若干変更<br>広告バナーを設置|
 |v1.1.0|2023.02.27|いきなり入力機能を追加|
 |v1.1.1|2023.03.06|設定画面でアプリのバージョンを確認可能に|
+|v1.1.3|2023.03.27|dotenv導入して環境変数を管理|
+
+### ダウンロード
+
+[Android版(Google Play)はこちら](https://play.google.com/store/apps/details?id=com.arafipro.jpstockminimemo)
+
+[iPhone版(App Store)はこちら](https://apps.apple.com/app/id1665808160)
